@@ -1,0 +1,45 @@
+﻿@model List<OnlineKinoApp.Models.Movie>
+
+<h1>Online Cinema</h1>
+
+<a asp-controller="Movie"
+   asp-action="Add"
+   class="btn btn-primary mb-4">
+    Add Movie
+</a>
+
+<div class="row">
+
+    @if (Model != null)
+    {
+        foreach (var movie in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    @if (!string.IsNullOrEmpty(movie.PosterSasUrl))
+                    {
+                        <img src="@movie.PosterSasUrl"
+                             class="card-img-top"
+                             style="height: 400px; object-fit: cover;"
+                             alt="@movie.Title" />
+                    }
+                    <div class="card-body">
+
+                        <h4>@movie.Title</h4>
+
+                        <p>
+                            <strong>Genre:</strong>
+                            @movie.Genre
+                        </p>
+
+                        <p>
+                            @movie.ShortDescription
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+</div>
